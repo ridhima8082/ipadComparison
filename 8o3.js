@@ -58,3 +58,5 @@ test('Compare iPad Pro and iPad Air features and export details', async t => {
 
     await t.expect(ipadAirPageLoaded).ok('iPad Air page did not load', { timeout: 10000 });
 });
+
+//New Changes 
