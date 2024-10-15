@@ -2,7 +2,6 @@ import { Selector } from 'testcafe';
 import xlsx from 'xlsx';
 import fs from 'fs';
 
-// Function to write data to an Excel sheet
 function writeToExcel(data) {
     const wb = xlsx.utils.book_new();
     const ws = xlsx.utils.json_to_sheet(data);
@@ -14,7 +13,7 @@ fixture `Extract Python Interview Questions`
     .page `https://www.geeksforgeeks.org/python-interview-questions/`;
 
 test('Fetch interview questions from GeeksforGeeks', async t => {
-    // Select the interview questions - they are in h2 or h3 tags typically
+    
     const questions = Selector('h2, h3');
     
     const questionCount = await questions.count;
