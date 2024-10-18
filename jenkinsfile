@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Checkout the repository from GitHub
+                git branch: 'IpadBranch', url: 'https://github.com/ridhima8082/ipadComparison.git'
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                // Install Node.js dependencies using npm
+                script {
+                    // Assumes you have Node.js and npm installed on Jenkins agent
+                    sh 'npm install'
+                }
+            }
+        }
+        
+        stage('Run TestCafe Tests') {
+            steps {
+                script {
+                    // Run TestCafe tests
+                    sh 'npx testcafe chrome tests/*.js'  // Adjust command based on your test location and browser
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Clean up workspace after the build
+            cleanWs()
+        }
+        success {
+            echo 'Build and tests completed successfully!'
+        }
+        failure {
+            echo 'Build or tests failed.'
+        }
+    }
+}
