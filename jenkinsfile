@@ -10,13 +10,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                sh 'npm install' // Replace with your actual build command
+                bat 'npm install' // Replace with your actual build command
             }
         }
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'npm test' // Replace with your actual test command
+                bat 'npm test' // Replace with your actual test command
             }
         }
     }
